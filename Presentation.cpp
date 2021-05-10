@@ -84,10 +84,10 @@ void printer(vector<Car> my_vector){
     cout<<fixed;
     cout<<setprecision(8);
     cout<<left<<setw(15)<<"Model";
-    cout<<right<<setw(15)<<"Brand";
+    cout<<right<<setw(13)<<"Brand";
     cout<<right<<setw(15)<<"Fuel";
     cout<<right<<setw(15)<<"Year";
-    cout<<right<<setw(15)<<"Kilometers";
+    cout<<right<<setw(17)<<"Kilometers";
     cout<<right<<setw(15)<<"Price";
     cout<<right<<setw(15)<<"Power";
     cout<<"\n";
@@ -96,19 +96,25 @@ void printer(vector<Car> my_vector){
     for(int i=0;i<my_vector.size();i++)
     {   cout<<fixed;
         cout<<setprecision(8);
-        cout<<left<<setw(15)<<"Model";
-        cout<<left<<setw(15)<<"Model";
-        cout<<right<<setw(15)<<"Brand";
-        cout<<right<<setw(15)<<"Fuel";
-        cout<<right<<setw(15)<<"Year";
-        cout<<right<<setw(15)<<"Kilometers";
-        cout<<right<<setw(15)<<"Price";
-        cout<<right<<setw(15)<<"Power";
+        cout<<left<<setw(15)<<my_vector[i].get_Model();
+        cout<<right<<setw(13)<<my_vector[i].get_Brand();
+        cout<<right<<setw(15)<<my_vector[i].get_Fuel();
+        cout<<right<<setw(15)<<my_vector[i].get_Year();
+        cout<<right<<setw(17)<<my_vector[i].get_Kilometers();
+        cout<<right<<setw(15)<<my_vector[i].get_Price();
+        cout<<right<<setw(15)<<my_vector[i].get_Power();
         cout<<"\n";
     }
 
 }
-
+Kunde Console::find_client(string name) {
+    for(int i=0;i<client_list.size();i++)
+    {
+        if(client_list[i].get_name()==name)
+            return client_list[i];
+    }
+    throw exception();
+}
 void Console::manager_run() {
     string command,model,brand;
     vector<Car> result;
@@ -239,6 +245,7 @@ void Console::customer_run(Kunde client) {
     Car new_car("","","",0,0,0,0);
     int yearofregistration,km;
     vector<Car> result;
+
     cout<<"Write find to find a specific car in the list \n";
     cout<<"Write update price in order to update the price of a specific car \n";
     cout<<"Write update kilometers in order to update the kilometers of a specific car \n";
@@ -363,9 +370,21 @@ void Console::customer_run(Kunde client) {
             printer(result);
 
         }
+
+        if(command == "change")
+        {
+            cout<<"select a new user";
+            cin>>username;
+            client=find_client(username);
+            customer_run(client);
+
+        }
             cout << "Choose another command or write exit to stop using the program";
             cin >> command;
 
     }
 
 }
+
+
+
