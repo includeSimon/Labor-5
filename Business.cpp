@@ -1,6 +1,7 @@
 #include "Business.h"
 using namespace Controller;
 
+
 void CarController::add(const Car &car)
 {
   this->repo.add(car);
@@ -59,11 +60,12 @@ vector<Car> CarController::findModel(string model)
   return result;
 }
 
-vector<Car> CarController::findBrandAndModel(string brand, string model)
+vector<Car> CarController::findBrandAndModel(string model, string brand)
 {
   vector<Car> result;
   vector<Car> copy_list;
   copy_list = getAll();
+
   for (int i = 0; i < copy_list.size(); i++)
   {
     if (copy_list[i].get_Brand() == brand && copy_list[i].get_Model() == model)
@@ -112,7 +114,7 @@ vector<Car> CarController::filterByAgeAndKilometers(int age, int kilometers)
   return result;
 }
 
-vector<Car> CarController::sortByPrice(int price)
+vector<Car> CarController::sortByPrice()
 {
   vector<Car> copy_list;
   copy_list = getAll();

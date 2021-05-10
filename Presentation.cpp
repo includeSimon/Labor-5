@@ -3,6 +3,8 @@
 using namespace UI;
 using namespace std;
 using namespace Client;
+using namespace Domain;
+
 Car Console::reader() {
     string model,brand,fuel;
     int yearofregistration,kilometers,price,power;
@@ -54,11 +56,11 @@ vector<Car> Console::getAll() {
 }
 
 vector<Car> Console::findBrand(string brand) {
-    this->_ctrl.findBrand(brand);
+    return this->_ctrl.findBrand(brand);
 }
 
 vector<Car> Console::findModel(string model) {
-    this->_ctrl.findModel(model);
+    return this->_ctrl.findModel(model);
 }
 
 vector<Car> Console::findBrandAndModel(string brand, string model) {
@@ -76,8 +78,8 @@ vector<Car> Console::filterByAgeAndKilometers(int age, int kilometers) {
     return this->_ctrl.filterByAgeAndKilometers(age,kilometers);
 }
 
-vector<Car> Console::sortByPrice(int price) {
-    return this->_ctrl.sortByPrice(price);
+vector<Car> Console::sortByPrice() {
+    return this->_ctrl.sortByPrice();
 }
 
 void printer(vector<Car> my_vector){
@@ -120,6 +122,7 @@ void Console::manager_run() {
     vector<Car> result;
     Car new_car("","","",0,0,0,0);
     int yearofregistration,km;
+
     cout<<"Enter one of the commands to execute the specific command and write exit to end the program \n";
     cout<<"Write add to add a car to the list of all cars \n";
     cout<<"Write remove to remove one of the cars in the list \n";
@@ -133,12 +136,18 @@ void Console::manager_run() {
     cout<<"Write filter1  to find the cars from one specific year \n ";
     cout<<"Write filter2 to find all the cars with that number of kilometers driven \n ";
     cout<<"Write filter3 to find all the cars from a specific year and the amount of kilometers specified \n ";
-    cin>>command;
-    while(command != "exit")
+
+    while(true)
     {
-        if(command=="add"){
-             new_car=reader();
-            _ctrl.add(new_car);
+      cout << "Insert command: " << endl;
+      cin >> command;
+      if (command == "exit")
+        break;
+        
+      if (command == "add")
+      {
+        new_car = reader();
+        _ctrl.add(new_car);
         }
 
         if(command == "remove"){
@@ -235,8 +244,6 @@ void Console::manager_run() {
             printer(result);
 
         }
-        cout<<"Choose another command or write exit to stop using the program";
-        cin>>command;
     }
 }
 

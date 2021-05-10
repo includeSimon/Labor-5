@@ -10,7 +10,7 @@ namespace Controller{
   class CarController{
     public:
       CarController(CarRepo &_repo) : repo(_repo){};
-
+      
       //methods of car repo
       void add(const Car &car);
       bool remove(const Car &car);
@@ -22,13 +22,13 @@ namespace Controller{
       //individual methods of controller
       vector<Car> findBrand(string brand);
       vector<Car> findModel(string model);
-      vector<Car> findBrandAndModel(string brand, string model);
+      vector<Car> findBrandAndModel(string model, string brand);
       vector<Car> filterByAge(int age);
       vector<Car> filterByKilometers(int kilometers);
       vector<Car> filterByAgeAndKilometers(int age, int kilometers);
-      vector<Car> sortByPrice(int price);
+      vector<Car> sortByPrice();
 
-      ~CarController();
+      ~CarController(){};
 
     private:
       CarRepo & repo;

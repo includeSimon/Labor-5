@@ -15,20 +15,13 @@ void CarRepo::add(const Car &car)
 
 bool CarRepo::remove(const Car &car)
 {
-
-  for (int i = 0; i < this->list.size() - 1; i++)
-  {
-    if (this->list[i].checker(car))
-    {
-      for (int j = i; j < this->list.size() - 1; j++)
-        this->list[j] = this->list[j + 1];
-
-      this->list.pop_back();
+  for (int i = 0 ; i < list.size(); i++)
+    if (list[i].checker(car)){
+      list.erase(list.begin() + i);
       return true;
     }
-  }
-  this->list.pop_back();
-  return true;
+
+  return false;
 }
 
 bool CarRepo::find(const Car &car)
@@ -76,3 +69,7 @@ vector<Car> CarRepo::getAll()
 }
 
 CarRepo::~CarRepo() = default;
+
+int CarRepo::size(){
+  return list.size();
+}

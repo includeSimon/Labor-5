@@ -6,7 +6,7 @@ using namespace std;
 class RepoError : public exception
 {
 private:
-  string _msg;
+  string msg;
 
 public:
   RepoError(const string &);

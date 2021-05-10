@@ -16,6 +16,7 @@ namespace Repository
     bool find(const Car& car);
     void update_Kilometers(Car &car, int _kilometers);    //oare const din add ne deranjeaza in update? (l-am introdus ca si constant, iar noi vrem sa il stergem)
     void update_Price(Car &car, int _price);              //do we need const here too? - intrebare pentru prof
+    int size();
     vector<Car> getAll();
     ~CarRepo();
 

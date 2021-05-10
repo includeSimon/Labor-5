@@ -7,7 +7,8 @@ namespace Domain
   class Car
   {
   public:
-    Car(const string &, const string &, const string &, const int &, const int &, const int &, const int &);
+    Car(const string &model, const string &brand, const string &fuel, const int &yearofregistration,
+         const int &kilometers, const int &price, const int &power);
     string get_Model();
     string get_Brand();
     int get_Year();
@@ -18,7 +19,8 @@ namespace Domain
     void set_Kilometers(int _kilometers);
     void set_Price(int _price);
     bool checker(Car other);
-    friend ostream &operator<<(ostream &os, const Car &car);
+    //friend ostream &operator<<(std::ostream &os, const Car &car);
+    void show();
     ~Car();
 
   private:

@@ -1,4 +1,3 @@
-
 #include "Kunde.h"
 
 using namespace Client;
@@ -34,9 +33,14 @@ bool Kunde::delete_favourite(Car new_car)
   // vector<int>::iterator it;
   // it = remove_if(favourite_list.begin(), favourite_list.end(), checker(new_car));
   this->favourite_list.pop_back();
+  return true;
 }
 
 vector<Car> Kunde::show_all()
 {
   return this->favourite_list;
+}
+
+string Kunde::get_name(){
+  return username;
 }

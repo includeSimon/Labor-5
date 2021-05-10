@@ -1,21 +1,26 @@
+#pragma once
 #include "Domain.h"
 #include "vector"
 using namespace Domain;
-namespace Client{
+namespace Client
+{
 
-    class Kunde{
+  class Kunde
+  {
 
-    private:
-        vector<Car> favourite_list;
-        string username;
+  private:
+    vector<Car> favourite_list;
+    string username;
 
-    public:
-        Kunde(string username);
+  public:
+    Kunde(string username);
 
-        void add_favourite(Car new_car);
+    void add_favourite(Car new_car);
 
-        bool delete_favourite(Car new_car);
+    bool delete_favourite(Car new_car);
 
-        vector<Car> show_all();
-    };
-}
+    vector<Car> show_all();
+
+    string get_name();
+  };
+};
