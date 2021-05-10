@@ -11,7 +11,7 @@ namespace UI
   {
   private:
     vector<Client::Kunde> client_list;
-    CarController _ctrl;
+    CarController &_ctrl;
     //methods of car repo
     void add(const Car &car);
     bool remove(const Car &car);
@@ -32,7 +32,6 @@ namespace UI
     Client::Kunde find_client(string name);
     
   public:
-    //CarController & _ctrl;
     Console(CarController &ctrl) : _ctrl(ctrl){};
     void manager_run();
     void customer_run(Client::Kunde client);
