@@ -34,7 +34,7 @@ namespace UI
   public:
     Console(CarController &ctrl) : _ctrl(ctrl){};
     void manager_run();
-    void customer_run(Client::Kunde client);
+    void customer_run(Client::Kunde &client);
     ~Console(){};
   };
 }

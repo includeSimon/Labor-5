@@ -13,14 +13,38 @@ int main()
 
   Repository::CarRepo repo;
   Controller::CarController ctrl(repo);
-  UI::Console ui(ctrl);
 
-  Client::Kunde Ana("anamaria05");
+  Car car1("A5", "Audi", "DIESEL", 2017, 1000, 10000, 100);          //remove
+  Car car2("Logan", "Dacia", "BENZIN", 2019, 2000, 5000, 90);        //remove
+  Car car3("Tiguan", "Volkswagen", "DIESEL", 2020, 500, 20000, 110); //remove
+  Car car4("Cabriolet", "BMW", "DIESEL", 2020, 700, 70000, 150);
+  Car car5("Polo", "Volkswagen", "BENZIN", 2015, 100000, 2000, 90);
+  Car car6("Q7", "Audi", "DIESEL", 2015, 25000, 75000, 100);
+  Car car7("X6", "BMW", "DIESEL", 2021, 0, 80000, 200);
+  Car car8("Range Rover Velar", "Land Rover", "DIESEL", 2018, 80000, 50000, 240);
+  Car car9("A6", "Audi", "DIESEL", 2021, 0, 16790, 150);
+  Car car10("Macan Facelift", "Porsche", "DIESEL", 2018, 10000, 30000, 200);
+  Car car11("Gama Panamera", "Porsche", "DIESEL", 2019, 20000, 25000, 200); // nu avem
+
+  ctrl.add(car1);
+  ctrl.add(car2);
+  ctrl.add(car3);
+  ctrl.add(car4);
+  ctrl.add(car5);
+  ctrl.add(car6);
+  ctrl.add(car7);
+  ctrl.add(car8);
+  ctrl.add(car9);
+  ctrl.add(car10);
+  ctrl.add(car11);
+
+  UI::Console ui(ctrl);
 
   int choice = 0;
 
   cout << "1. Manager" << endl;
   cout << "2. Client" << endl;
+  cout << "3. Show clients" << endl;
   cout << "0. Exit" << endl;
 
   vector<Client::Kunde> clients;
@@ -43,21 +67,27 @@ int main()
       cout << "Enter the name of the user: " << endl;
       cin >> name;
 
-      for (auto elem : clients)
-        if (elem.get_name() == name)
+      for (int i = 0; i < clients.size(); i++)
+        if (clients[i].get_name() == name)
         {
-          ui.customer_run(elem);
+          ui.customer_run(clients[i]);
           ok = true;
         }
 
       if (!ok){
         Client::Kunde newClient(name);
-        clients.push_back(newClient);
-
         ui.customer_run(newClient);
+        clients.push_back(newClient);
       }
     }
+
+    if (choice == 3){
+      for( auto elem : clients)
+        cout << elem.get_name() << " ";
+      cout << endl;
+    }
   }
+
 
   return 0;
 }

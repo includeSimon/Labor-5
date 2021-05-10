@@ -47,6 +47,7 @@ void printer(vector<Car> my_vector)
   {
     cout << fixed;
     cout << setprecision(8);
+    cout << i + 1 << ". ";
     cout << left << setw(15) << my_vector[i].get_Model();
     cout << right << setw(13) << my_vector[i].get_Brand();
     cout << right << setw(15) << my_vector[i].get_Fuel();
@@ -91,7 +92,7 @@ void Console::manager_run()
 
   while (true)
   {
-    cout << "Insert command: " << endl;
+    cout << endl << "Insert command: " << endl;
     cin >> command;
     if (command == "exit")
       break;
@@ -208,7 +209,7 @@ void Console::manager_run()
   }
 }
 
-void Console::customer_run(Kunde client)
+void Console::customer_run(Kunde &client)
 {
   string command, username, brand, model;
   Car new_car("", "", "", 0, 0, 0, 0);
@@ -336,9 +337,13 @@ void Console::customer_run(Kunde client)
 
     if (command == "addfav")
     {
+      int option = 0;
       cout << "Pick the car you want to add \n";
-      new_car = reader();
-      client.add_favourite(new_car);
+      result = _ctrl.getAll();
+      printer(result);
+
+      cin >> option;
+      client.add_favourite(result[option-1]);
     }
 
     if (command == "removefav")
